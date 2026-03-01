@@ -14,16 +14,16 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Unpack: .bytes → YAML
-    Unpack {
+    /// Decode: .bytes → YAML
+    Decode {
         /// Input .bytes level file
         input: PathBuf,
         /// Output YAML file (stdout if not specified)
         #[arg(short, long)]
         output: Option<PathBuf>,
     },
-    /// Pack: YAML → .bytes
-    Pack {
+    /// Encode: YAML → .bytes
+    Encode {
         /// Input YAML file
         input: PathBuf,
         /// Output .bytes level file
@@ -36,7 +36,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
     match cli.command {
-        Commands::Unpack { input, output } => {
+        Commands::Decode { input, output } => {
             let file = File::open(&input)?;
             let mut r = BufReader::new(file);
             let level = reader::read_level(&mut r)?;
@@ -46,7 +46,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             if let Some(out_path) = &output {
                 std::fs::write(out_path, &yaml)?;
                 eprintln!(
-                    "Unpacked {} objects → {}",
+                    "Decoded {} objects → {}",
                     level.object_count,
                     out_path.display()
                 );
@@ -54,7 +54,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 println!("{}", yaml);
             }
         }
-        Commands::Pack { input, output } => {
+        Commands::Encode { input, output } => {
             let yaml = std::fs::read_to_string(&input)?;
             let level: types::LevelFile = serde_yaml::from_str(&yaml)?;
 
@@ -64,7 +64,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             writer::write_level(&mut w, &level)?;
 
             eprintln!(
-                "Packed {} objects → {}",
+                "Encoded {} objects → {}",
                 level.objects.len(),
                 out_path.display()
             );

@@ -1,14 +1,14 @@
 # Bad Piggies Level Converter
 
-A fast and robust command-line tool written in Rust for unpacking and packing Bad Piggies binary level files (`.bytes`).
+A fast and robust command-line tool written in Rust for decoding and encoding Bad Piggies binary level files (`.bytes`).
 
 ## Overview
 
-Bad Piggies stores its level data in a proprietary binary format (`.bytes`). This tool enables you to convert these binary files into human-readable YAML for easy editing, modding, or analysis, and then pack your modified YAML back into game-ready `.bytes` files. 
+Bad Piggies stores its level data in a proprietary binary format (`.bytes`). This tool enables you to convert these binary files into human-readable YAML for easy editing, modding, or analysis, and then encode your modified YAML back into game-ready `.bytes` files. 
 
 ### Features
 
-- **Perfect Round-Trip Accuracy**: The converter was tested against all 28 original game levels. A `.bytes` file unpacked to YAML and packed back is functionally identical to the original.
+- **Perfect Round-Trip Accuracy**: The converter was tested against all 28 original game levels. A `.bytes` file decoded to YAML and encoded back is functionally identical to the original.
 - **Human-Readable YAML Output**: Instead of dealing with unreadable binary data, you get structured YAML.
 - **Base64 Texture Embeds**: Native `base64` embedding of PNG control textures within the YAML to preserve image integrity across conversions.
 - **Cross-Platform**: Small, compiled standalone binary for Windows, macOS, and Linux without external runtime dependencies like Python or Node.js.
@@ -28,20 +28,20 @@ The compiled binary will be located at `target/release/bad-piggies-level`.
 
 ## Usage
 
-### Unpack `.bytes` to `YAML`
+### Decode `.bytes` to `YAML`
 Converts a binary level file into a structured YAML format.
 
 ```bash
-bad-piggies-level unpack path/to/Level_01_data.bytes -o Level_01_data.yaml
+bad-piggies-level decode path/to/Level_01_data.bytes -o Level_01_data.yaml
 ```
 
 If the `-o` (or `--output`) option is omitted, the YAML will be printed directly to the console (`stdout`).
 
-### Pack `YAML` to `.bytes`
+### Encode `YAML` to `.bytes`
 Converts your modified YAML file back into a binary level file format ready to be loaded by the game.
 
 ```bash
-bad-piggies-level pack path/to/Level_01_data.yaml -o Level_01_data.bytes
+bad-piggies-level encode path/to/Level_01_data.yaml -o Level_01_data.bytes
 ```
 
 If `-o` is omitted, the tool will automatically output a file with the same name but with a `.bytes` extension in the same directory as the input YAML file.
