@@ -11,7 +11,7 @@ on:
 env:
   # The name of the binary to release.
   # This matches the package name in crates/cli/Cargo.toml
-  BIN_NAME: badpiggies-level-converter
+  BIN_NAME: bad-piggies-level
 
 jobs:
   build-and-upload:
@@ -73,10 +73,11 @@ jobs:
             CMD=cross
           fi
 
-          # Build the specific CLI package using '-p dzip-cli'.
+          # Build the specific CLI package using '-p badpiggies-level-converter'.
           # This ensures we only compile the binary we intend to release,
           # avoiding issues if other binaries are added to the workspace later.
-          $CMD build --release --target ${{ matrix.target }} -p dzip-cli
+          $CMD build --release --target ${{ matrix.target }} -p badpiggies-level-converter
+
 
       - name: Package Release Asset
         id: package
