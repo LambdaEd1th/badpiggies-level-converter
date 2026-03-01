@@ -1,0 +1,9 @@
+[package]
+name = "bad-piggies-level-core"
+version = "0.1.0"
+edition = "2021"
+description = "Core library for parsing and writing Bad Piggies binary level files"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+base64 = "0.22"

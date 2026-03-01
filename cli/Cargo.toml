@@ -1,0 +1,14 @@
+[package]
+name = "badpiggies-level-converter"
+version = "0.1.0"
+edition = "2021"
+description = "CLI tool for Bad Piggies binary level files"
+
+[[bin]]
+name = "bad-piggies-level"
+path = "src/main.rs"
+
+[dependencies]
+bad-piggies-level-core = { path = "../core" }
+serde_yaml = "0.9"
+clap = { version = "4", features = ["derive"] }
