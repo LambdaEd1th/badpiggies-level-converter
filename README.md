@@ -19,7 +19,7 @@ Bad Piggies stores its level data in a proprietary binary format (`.bytes`). Thi
 You must have [Rust and Cargo](https://rustup.rs/) installed. Clone the repository and build:
 
 ```bash
-git clone https://github.com/yourusername/badpiggies-level-converter.git
+git clone https://github.com/LambdaEd1th/badpiggies-level-converter.git
 cd badpiggies-level-converter
 cargo build --release
 ```
@@ -69,4 +69,4 @@ The YAML file maps 1:1 with the game's internal data structures. Key elements in
 
 ## License
 
-This project is open-source and available under the terms of the MIT License.
+This project is open-source and available under the terms of the GNU General Public License v3.0 (GPLv3). See the [LICENSE](LICENSE) file for more details.
